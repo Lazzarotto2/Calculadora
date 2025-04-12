@@ -1,18 +1,30 @@
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.*;
+import java.util.Arrays;
+
+
 class Numerus {
-    private String operacao;
-    private double nume;
-    Numerus(double nume, String operacao){
-        this.nume = nume;
-        this.operacao = operacao;
+    private Op op;
+    public Numerus(Op op){
+        this.op = op;
+    }
+   public void analisarEcalcular(){
+        if (op.getValores().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nada pra Calcular, patron!");
+            return
+        }
 
-    }
-    public String getOperacao() {
-        return operacao;
-    }
+        double resultado = 0;
+        List<String> OperacaoAtual = op.getOperadores();
+        for(String OperacaoAtual : op.getValores()){
 
-    public double getnume() {
-        return nume;
-    }
+        }
+
+
+   }
+
+
 
 
 }

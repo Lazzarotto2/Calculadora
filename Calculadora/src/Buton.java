@@ -11,8 +11,12 @@ public class Buton {
     }
     private StringBuilder numeroAtual = new StringBuilder();
     public  void criarJanela() {
-
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 3, 5, 5));
         JFrame frame = new JFrame("Calculadora");
+
+        JPanel secondButtonPanel = new JPanel(new GridLayout(4, 3, 5, 5));
+
+        JButton button0 = new JButton("0");
         JButton button1 = new JButton("1");
         JButton button2 = new JButton("2");
         JButton button3 = new JButton("3");
@@ -25,6 +29,33 @@ public class Buton {
 
         JButton buttonplus = new JButton("+");
         JButton buttoningual = new JButton("=");
+        JButton buttonmulti = new JButton("X");
+        JButton buttondiv = new JButton("÷");
+        JButton buttonminus = new JButton("-");
+
+
+
+
+        buttonPanel.add(button1);
+        buttonPanel.add(button2);
+        buttonPanel.add(button3);
+        buttonPanel.add(button4);
+        buttonPanel.add(button5);
+        buttonPanel.add(button6);
+        buttonPanel.add(button7);
+        buttonPanel.add(button8);
+        buttonPanel.add(button9);
+
+
+
+
+        secondButtonPanel.add(buttonplus);
+        secondButtonPanel.add(buttoningual);
+        secondButtonPanel.add(buttonmulti);
+        secondButtonPanel.add(buttondiv);
+        secondButtonPanel.add(buttonminus);
+
+
 
         button1.setActionCommand("1");
         button2.setActionCommand("2");
@@ -36,10 +67,19 @@ public class Buton {
         button8.setActionCommand("8");
         button9.setActionCommand("9");
         buttonplus.setActionCommand("+");
+        buttonmulti.setActionCommand("*");
+        buttonminus.setActionCommand("-");
+        buttondiv.setActionCommand("/");
         buttoningual.setActionCommand("=");
 
 
-
+        button0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                numeroAtual.append("0");
+                System.out.println("x: " + numeroAtual);
+            }
+        });
 
         button1.addActionListener(new ActionListener() {
             @Override
@@ -115,23 +155,79 @@ public class Buton {
                 System.out.println("Adicionado: +");
             }
         });
+        buttonminus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (numeroAtual.length() > 0) {
+                    op.add(numeroAtual.toString());
+                    numeroAtual.setLength(0);
+                }
+                op.add("-");
+                System.out.println("Adicionado: -");
+            }
+        });
+        buttonmulti.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (numeroAtual.length() > 0) {
+                    op.add(numeroAtual.toString());
+                    numeroAtual.setLength(0);
+                }
+                op.add("*");
+                System.out.println("Adicionado: *");
+            }
+        });
+        buttondiv.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (numeroAtual.length() > 0) {
+                    op.add(numeroAtual.toString());
+                    numeroAtual.setLength(0);
+                }
+                op.add("/");
+                System.out.println("Adicionado: /");
+            }
+        });
+        buttoningual.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (numeroAtual.length() > 0) {
+                    op.add(numeroAtual.toString());
+                    numeroAtual.setLength(0);
+                }
+                op.add("/");
+                System.out.println("Adicionado: /");
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         JPanel panel = new JPanel();
-        panel.setBorder(Borda.createTitledBorder("Hello"));
+        panel.setBorder(Borda.createTitledBorder("Calculadora"));
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 200);
         frame.setLayout(new FlowLayout());
-        frame.add(button1);
-        frame.add(button2);
-        frame.add(button3);
-        frame.add(button4);
-        frame.add(button5);
-        frame.add(button6);
-        frame.add(button7);
-        frame.add(button8);
-        frame.add(button9);
-        frame.add(buttonplus);
-        frame.add(buttoningual);
+        frame.add(buttonPanel,BorderLayout.CENTER);
+        frame.add(secondButtonPanel, BorderLayout.SOUTH);
         frame.setVisible(true);
         }
 

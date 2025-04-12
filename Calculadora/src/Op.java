@@ -4,13 +4,28 @@ import javax.swing.*;
 import java.util.Arrays;
 
 public class Op {
-
+    public List<String> getOperadores() {
+        return Arrays.asList("+", "-", "*", "/","=");
+    }
 
 
     private List<String> valores = new ArrayList<>();
-    public void add(String valor) {
-        List<String> operadores = Arrays.asList("+", "-", "*", "/");
-
+    public boolean add(String valor) {
+        List<String> operadores = Arrays.asList("+", "-", "*", "/","=");
+        if(!valores.equals("=")){
+            if(!valores.isEmpty() && operadores.contains(valores.get(valores.size() -1))){
+                ImageIcon icone = new ImageIcon(getClass().getResource("/Image.jpg"));
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Erro: A expressão termina com operador, patron.",
+                        "Erro de operação",
+                        JOptionPane.ERROR_MESSAGE,
+                        icone
+                );
+                return false;
+            }
+            return true;
+        }
         if (!valores.isEmpty()) {
             String ultimo = valores.get(valores.size() - 1);
 
@@ -24,7 +39,7 @@ public class Op {
                         icone
                 );
 
-                return;
+                return false;
             }
 
         } else {
@@ -37,12 +52,15 @@ public class Op {
                         JOptionPane.ERROR_MESSAGE,
                         icone
                 );
-                return;
+                return false;
             }
+            return true;
         }
 
         valores.add(valor);
         System.out.println("Adicionado: " + valor);
+        System.out.println("Lista atual:" + valores);
+        return true;
     }
 
     public List<String> getValores() {
