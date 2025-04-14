@@ -6,9 +6,12 @@ import javax.swing.*;
 
 public class Buton {
     private Op op;
-    public Buton(Op op){
+    private Numerus analisarEcalcular;
+    public Buton(Op op, Numerus analisarEcalcular){
         this.op = op;
+        this.analisarEcalcular = analisarEcalcular;
     }
+
     private StringBuilder numeroAtual = new StringBuilder();
     public  void criarJanela() {
         JPanel buttonPanel = new JPanel(new GridLayout(4, 3, 5, 5));
@@ -191,12 +194,12 @@ public class Buton {
         buttoningual.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (numeroAtual.length() > 0) {
-                    op.add(numeroAtual.toString());
-                    numeroAtual.setLength(0);
-                }
-                op.add("/");
-                System.out.println("Adicionado: /");
+                if (!op.add("=")) {
+                    return;
+                };
+                Numerus.analisarEcalcular();
+
+                System.out.println("Realizou a conta.");
             }
         });
 
