@@ -194,12 +194,14 @@ public class Buton {
         buttoningual.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!op.add("=")) {
-                    return;
-                };
-                Numerus.analisarEcalcular();
+                    if (numeroAtual.length() > 0) {
+                        op.add(numeroAtual.toString());
+                        numeroAtual.setLength(0);
+                    }
+                    analisarEcalcular.analisarEcalcular();
 
-                System.out.println("Realizou a conta.");
+                    System.out.println("Realizou a conta.");
+
             }
         });
 

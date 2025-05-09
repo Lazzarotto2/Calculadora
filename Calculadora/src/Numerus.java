@@ -10,23 +10,27 @@ class Numerus {
     }
 
     public void analisarEcalcular() {
-        if (op.getValores().isEmpty()) {
-            ImageIcon icone = new ImageIcon(getClass().getResource("/doggy_suit(1).jpg"));
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Nada pra Calcular, patron!",
-                    "Erro na operação",
-                    JOptionPane.ERROR_MESSAGE,
-                    icone
-            );
+        List<String> valores = op.getValores();
+        List<String> operadores = op.getOperadores();
+
+        // Verifica se não tem nada
+        if (valores.isEmpty()) {
+            mostrarErro("Nada pra Calcular, patrão!");
             return;
-        };
+        }
+
+        // Verifica se termina com operador
+        String ultimo = valores.get(valores.size() - 1);
+        if (operadores.contains(ultimo)) {
+            mostrarErro("Erro: expressão termina com operador, patrão!");
+            return;
+        }
 
         double resultado = 0;
-        List<String> operador = op.getOperadores();
         String operacaoatu = "+";
-        for (String valor : op.getValores()) {
-            if (operador.contains(valor)) {
+
+        for (String valor : valores) {
+            if (operadores.contains(valor)) {
                 operacaoatu = valor;
             } else {
                 try {
@@ -43,36 +47,44 @@ class Numerus {
                             break;
                         case "/":
                             if (numero == 0) {
-                                ImageIcon icone = new ImageIcon(getClass().getResource("/doggy_weapon.jpg"));
-                                JOptionPane.showMessageDialog(null,
+                                ImageIcon icone = new ImageIcon(getClass().getResource("/doggyweapon.jpg"));
+                                JOptionPane.showMessageDialog(
+                                        null,
                                         "Erro: Divisão por zero",
                                         "Erro de operação",
                                         JOptionPane.ERROR_MESSAGE,
                                         icone
-
                                 );
-                                resultado /= numero;
-                                break;
-
+                                return;
                             }
+                            resultado /= numero;
+                            break;
                     }
                 } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Erro: valor inválido - " + valor);
+                    mostrarErro("Erro: valor inválido - " + valor);
                     return;
-
                 }
             }
-
-
         }
-        ;
-        JOptionPane.showMessageDialog(null, "Resultado: " + resultado);
+        ImageIcon icone = new ImageIcon(getClass().getResource("/doggyweapon.jpg"));
+        JOptionPane.showMessageDialog(
+                null,
+                "Resultado: " + resultado,
+                "Results",
+                JOptionPane.ERROR_MESSAGE,
+                icone
+        );
         op.getValores().clear(); // limpa pra nova operação
     }
+
+    private void mostrarErro(String msg) {
+        ImageIcon icone = new ImageIcon(getClass().getResource("/doggysuit.jpg"));
+        JOptionPane.showMessageDialog(
+                null,
+                msg,
+                "Erro de operação",
+                JOptionPane.ERROR_MESSAGE,
+                icone
+        );
+    }
 }
-
-
-
-
-
-
