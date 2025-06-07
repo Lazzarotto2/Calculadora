@@ -69,5 +69,6 @@ public class Numerus {
                 JOptionPane.INFORMATION_MESSAGE,
                 icone
         );
+        resultadoLabel.setText("Resultado Final: " + resultado);
     }
 }

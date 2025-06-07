@@ -4,9 +4,11 @@ import java.util.Arrays;
 
 class Numerus {
     private Op op;
+    private JLabel resultadoLabel;
 
-    public Numerus(Op op) {
+    public Numerus(Op op, JLabel resultadoLabel) {
         this.op = op;
+        this.resultadoLabel = resultadoLabel;
     }
 
     public void analisarEcalcular() {
@@ -74,6 +76,7 @@ class Numerus {
                 JOptionPane.ERROR_MESSAGE,
                 icone
         );
+        resultadoLabel.setText("Resultado: " + resultado);
         op.getValores().clear(); // limpa pra nova operação
     }
 

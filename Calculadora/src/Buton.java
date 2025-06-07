@@ -6,14 +6,18 @@ import javax.swing.*;
 
 public class Buton {
     private Op op;
-    private Numerus analisarEcalcular;
-    public Buton(Op op, Numerus analisarEcalcular){
+    private JLabel display;
+
+    public Buton(Op op, JLabel display){
         this.op = op;
-        this.analisarEcalcular = analisarEcalcular;
+        this.display = display;
     }
 
     private StringBuilder numeroAtual = new StringBuilder();
     public  void criarJanela() {
+        JLabel resultadoLabel = new JLabel("Expressão: ");
+        resultadoLabel.setBounds(20, 250, 300, 30);
+
         JPanel buttonPanel = new JPanel(new GridLayout(4, 3, 5, 5));
         JFrame frame = new JFrame("Calculadora");
 
@@ -76,133 +80,86 @@ public class Buton {
         buttoningual.setActionCommand("=");
 
 
-        button0.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numeroAtual.append("0");
-                System.out.println("x: " + numeroAtual);
-            }
+        button0.addActionListener(e -> {
+            numeroAtual.append("0");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "0");
         });
 
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numeroAtual.append("1");
-                System.out.println("x: " + numeroAtual);
-            }
+        button1.addActionListener(e -> {
+            numeroAtual.append("1");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "1");
         });
-        button2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numeroAtual.append("2");
-                System.out.println("x: " + numeroAtual);
-            }
+        button2.addActionListener(e -> {
+            numeroAtual.append("2");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "2");
         });
-        button3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numeroAtual.append("3");
-                System.out.println("x: " + numeroAtual);
-            }
+        button3.addActionListener(e -> {
+            numeroAtual.append("3");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "3");
         });
-        button4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numeroAtual.append("4");
-                System.out.println("x: " + numeroAtual);
-            }
+        button4.addActionListener(e -> {
+            numeroAtual.append("4");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "4");
         });
-        button5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numeroAtual.append("5");
-                System.out.println("x: " + numeroAtual);
-            }
+        button5.addActionListener(e -> {
+            numeroAtual.append("5");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "5");
         });
-        button6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numeroAtual.append("6");
-                System.out.println("x: " + numeroAtual);
-            }
+        button6.addActionListener(e -> {
+            numeroAtual.append("6");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "6");
         });
-        button7.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numeroAtual.append("7");
-                System.out.println("x: " + numeroAtual);
-            }
+        button7.addActionListener(e -> {
+            numeroAtual.append("7");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "7");
         });
-        button8.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numeroAtual.append("8");
-                System.out.println("x: " + numeroAtual);
-            }
+        button8.addActionListener(e -> {
+            numeroAtual.append("8");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "8");
         });
-        button9.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numeroAtual.append("9");
-                System.out.println("x: " + numeroAtual);
-            }
+        button9.addActionListener(e -> {
+            numeroAtual.append("9");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "9");
         });
-        buttonplus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (numeroAtual.length() > 0) {
-                    op.add(numeroAtual.toString());
-                    numeroAtual.setLength(0);
-                }
-                op.add("+");
-                System.out.println("Adicionado: +");
+        buttonplus.addActionListener(e -> {
+            if (numeroAtual.length() > 0) {
+                op.add(numeroAtual.toString());
+                numeroAtual.setLength(0);
             }
+            op.add("+");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "+");
         });
-        buttonminus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (numeroAtual.length() > 0) {
-                    op.add(numeroAtual.toString());
-                    numeroAtual.setLength(0);
-                }
-                op.add("-");
-                System.out.println("Adicionado: -");
+        buttonminus.addActionListener(e -> {
+            if (numeroAtual.length() > 0) {
+                op.add(numeroAtual.toString());
+                numeroAtual.setLength(0);
             }
+            op.add("-");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "-");
         });
-        buttonmulti.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (numeroAtual.length() > 0) {
-                    op.add(numeroAtual.toString());
-                    numeroAtual.setLength(0);
-                }
-                op.add("*");
-                System.out.println("Adicionado: *");
+        buttonmulti.addActionListener(e -> {
+            if (numeroAtual.length() > 0) {
+                op.add(numeroAtual.toString());
+                numeroAtual.setLength(0);
             }
+            op.add("*");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "*");
         });
-        buttondiv.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (numeroAtual.length() > 0) {
-                    op.add(numeroAtual.toString());
-                    numeroAtual.setLength(0);
-                }
-                op.add("/");
-                System.out.println("Adicionado: /");
+        buttondiv.addActionListener(e -> {
+            if (numeroAtual.length() > 0) {
+                op.add(numeroAtual.toString());
+                numeroAtual.setLength(0);
             }
+            op.add("/");
+            resultadoLabel.setText("Expressão: " + resultadoLabel.getText().replace("Expressão: ", "") + "/");
         });
-        buttoningual.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                    if (numeroAtual.length() > 0) {
-                        op.add(numeroAtual.toString());
-                        numeroAtual.setLength(0);
-                    }
-                    analisarEcalcular.analisarEcalcular();
-
-                    System.out.println("Realizou a conta.");
-
+        buttoningual.addActionListener(e -> {
+            if (numeroAtual.length() > 0) {
+                op.add(numeroAtual.toString());
+                numeroAtual.setLength(0);
             }
+            Numerus analisarEcalcular = new Numerus(op, resultadoLabel);
+            analisarEcalcular.analisarEcalcular();
         });
 
 
@@ -227,12 +184,13 @@ public class Buton {
 
         JPanel panel = new JPanel();
         panel.setBorder(Borda.createTitledBorder("Calculadora"));
-
+        frame.add(resultadoLabel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 200);
         frame.setLayout(new FlowLayout());
-        frame.add(buttonPanel,BorderLayout.CENTER);
+        frame.add(buttonPanel, BorderLayout.CENTER);
         frame.add(secondButtonPanel, BorderLayout.SOUTH);
+        frame.add(display, BorderLayout.NORTH);
         frame.setVisible(true);
         }
 
